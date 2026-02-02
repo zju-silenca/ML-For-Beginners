@@ -115,11 +115,11 @@ day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.
 
 从上一课中，您可能已经看到不同月份的平均价格如下所示：
 
-<img alt="按月份的平均价格" src="../2-Data/images/barchart.png" width="50%"/>
+<img alt="按月份的平均价格" src="../../../../2-Regression/2-Data/images/barchart.png" width="50%"/>
 
 这表明可能存在某种相关性，我们可以尝试训练线性回归模型来预测 `Month` 与 `Price` 或 `DayOfYear` 与 `Price` 之间的关系。以下是显示后者关系的散点图：
 
-<img alt="价格与一年中的天数的散点图" src="images/scatter-dayofyear.png" width="50%" /> 
+<img alt="价格与一年中的天数的散点图" src="../../../../2-Regression/3-Linear/images/scatter-dayofyear.png" width="50%" /> 
 
 让我们使用 `corr` 函数查看是否存在相关性：
 
@@ -138,7 +138,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="价格与一年中的天数的散点图" src="images/scatter-dayofyear-color.png" width="50%" /> 
+<img alt="价格与一年中的天数的散点图" src="../../../../2-Regression/3-Linear/images/scatter-dayofyear-color.png" width="50%" /> 
 
 我们的调查表明，品种对整体价格的影响比实际销售日期更大。我们可以通过柱状图看到这一点：
 
@@ -146,7 +146,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="价格与品种的柱状图" src="images/price-by-variety.png" width="50%" /> 
+<img alt="价格与品种的柱状图" src="../../../../2-Regression/3-Linear/images/price-by-variety.png" width="50%" /> 
 
 让我们暂时专注于一种南瓜品种——“馅饼型”，看看日期对价格的影响：
 
@@ -154,7 +154,7 @@ new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="价格与一年中的天数的散点图" src="images/pie-pumpkins-scatter.png" width="50%" /> 
+<img alt="价格与一年中的天数的散点图" src="../../../../2-Regression/3-Linear/images/pie-pumpkins-scatter.png" width="50%" /> 
 
 如果我们现在使用 `corr` 函数计算 `Price` 与 `DayOfYear` 之间的相关性，我们会得到类似 `-0.27` 的结果——这意味着训练预测模型是有意义的。
 
@@ -228,7 +228,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```  
 
-<img alt="线性回归" src="images/linear-results.png" width="50%" />
+<img alt="线性回归" src="../../../../2-Regression/3-Linear/images/linear-results.png" width="50%" />
 
 ## 多项式回归
 
@@ -257,7 +257,7 @@ pipeline.fit(X_train,y_train)
 
 管道可以像原始的 `LinearRegression` 对象一样使用，例如我们可以 `fit` 管道，然后使用 `predict` 获取预测结果。以下是显示测试数据和拟合曲线的图表：
 
-<img alt="多项式回归" src="images/poly-results.png" width="50%" />
+<img alt="多项式回归" src="../../../../2-Regression/3-Linear/images/poly-results.png" width="50%" />
 
 使用多项式回归，我们可以获得稍低的 MSE 和稍高的决定系数，但提升并不显著。我们需要考虑其他特征！
 
@@ -275,7 +275,7 @@ pipeline.fit(X_train,y_train)
 
 以下是品种与平均价格的关系：
 
-<img alt="按品种划分的平均价格" src="images/price-by-variety.png" width="50%" />
+<img alt="按品种划分的平均价格" src="../../../../2-Regression/3-Linear/images/price-by-variety.png" width="50%" />
 
 为了考虑品种，我们首先需要将其转换为数值形式，或者说**编码**。有几种方法可以实现：
 
